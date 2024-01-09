@@ -70,6 +70,12 @@ const customers = [
     email: 'balazs@orban.com',
     image_url: '/customers/balazs-orban.png',
   },
+  {
+    id: '13D07535-C59E-4157-A012-F8D2EF4E0CBC',
+    name: 'Tobe Cat',
+    email: 'tobecat@biscuit.com',
+    image_url: '/customers/balazs-orban.png',
+  },
 ];
 
 const invoices = [
