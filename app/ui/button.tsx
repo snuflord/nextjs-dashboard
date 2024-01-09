@@ -1,5 +1,7 @@
 import clsx from 'clsx';
 
+// this and the other UI files are examples of colocated files: this means that project files can be safely colocated inside route segments in the app directory without accidentally being routable. For example, the 'ui' folder is 'colocated' with our routable files (dashboard/ layout etc) for ease of access. 
+
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
