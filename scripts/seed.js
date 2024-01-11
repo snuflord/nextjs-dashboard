@@ -1,16 +1,23 @@
+// db assigned to postgres database - see dependencies package.json
+
 const { db } = require('@vercel/postgres');
+
+// assigning data arrays to these variables
 const {
   invoices,
   customers,
   revenue,
   users,
 } = require('../app/lib/placeholder-data.js');
+
+// require bcrypt for hashing passwords
 const bcrypt = require('bcrypt');
 
+// following 4 functions fire on connection to database, should only be required once. 'client' argument is the connected client - see main()
 async function seedUsers(client) {
   try {
     await client.sql`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`;
-    // Create the "users" table if it doesn't exist
+    // Create the "users" table if it doesn't exist. This function sql`` translates your query into a native Postgres parameterized query to help prevent SQL injections. It is recommended for one-off queries.
     const createTable = await client.sql`
       CREATE TABLE IF NOT EXISTS users (
         id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
