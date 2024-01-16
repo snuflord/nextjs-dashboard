@@ -1,7 +1,8 @@
 import { generateYAxis } from '@/app/lib/utils';
 import { CalendarIcon } from '@heroicons/react/24/outline';
 import { lusitana } from '@/app/ui/fonts';
-import { Revenue } from '@/app/lib/definitions';
+// import { Revenue } from '@/app/lib/definitions';
+import { fetchRevenue } from '@/app/lib/data';
 
 // This component is representational only.
 // For data visualization UI, check out:
@@ -9,7 +10,13 @@ import { Revenue } from '@/app/lib/definitions';
 // https://www.chartjs.org/
 // https://airbnb.io/visx/
 
-export default async function RevenueChart({ revenue, }: {revenue: Revenue[];}) {
+export default async function RevenueChart() {
+
+   // Notice here, as well as in latest invoice and revenue chart dash components, we are calling the data fetching function directly in the component, and not on the top level page (dashboard page) so that no one function will slow th eothers down.
+
+  const revenue = await fetchRevenue() // fetch data inside the component instead of passing data as a prop from parent page.
+
+  // By parallelising the three data driven sections: Streaming is a data transfer technique that allows you to break down a route into smaller "chunks" and progressively stream them from the server to the client as they become ready.
 
   const chartHeight = 400;
   const { yAxisLabels, topLabel } = generateYAxis(revenue);
@@ -20,7 +27,7 @@ export default async function RevenueChart({ revenue, }: {revenue: Revenue[];}) 
 
   return (
     <div className="w-full md:col-span-4">
-      <h2 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
+      <h2 className={`${lusitana.className} text-white mb-4 text-xl md:text-2xl`}>
         Recent Revenue
       </h2>
 
