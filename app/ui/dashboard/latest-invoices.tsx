@@ -2,10 +2,14 @@ import { ArrowPathIcon } from '@heroicons/react/24/outline';
 import clsx from 'clsx';
 import Image from 'next/image';
 import { lusitana } from '@/app/ui/fonts';
-import { LatestInvoice } from '@/app/lib/definitions';
+import { fetchLatestInvoices } from '@/app/lib/data';
 
 
-export default async function LatestInvoices({latestInvoices,}: {latestInvoices: LatestInvoice[];}) {
+export default async function LatestInvoices() {
+
+   // Notice here, as well as in latest invoice and revenue chart dash components, we are calling the data fetching function directly in the component, and not on the top level page (dashboard page) so that no one function will slow th eothers down.
+
+  const latestInvoices = await fetchLatestInvoices();
   
   return (
     <div className="flex w-full flex-col md:col-span-4">
