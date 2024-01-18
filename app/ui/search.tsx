@@ -7,7 +7,7 @@ import { useDebouncedCallback } from 'use-debounce';
 // - this component is used in dashboard/invoices/. 
 export default function Search({ placeholder }: { placeholder: string }) {
 
-  // URLSearchParams is a Web API that provides utility methods for manipulating the URL query parameters. Instead of creating a complex string literal, you can use it to get the params string like ?page=1&query=a. This is a CLIENT component, which is why we use the getSearchParams hook, accessing params from the client. 
+  // URLSearchParams is a Web API that provides utility methods for manipulating the URL query parameters. Instead of creating a complex string literal, you can use it to get the params string like ?page=1&query=a. This is a CLIENT component, which is why we use the useSearchParams hook, accessing params from the client. 
 
   // As a general rule, if you want to read the params from the client, use the useSearchParams() hook as this avoids having to go back to the server.
 
